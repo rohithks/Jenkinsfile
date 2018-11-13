@@ -1,17 +1,11 @@
-pipeline {
-    agent any
-    stages {
-        stage('Example Build') {
-            steps {
-                echo 'Hello World Lululemon'
-          }
-        }
-            when {
-                branch 'production'
-            }
-            steps {
-                echo 'Deploying'
+pipeline { 
+    agent any  
+    stages { 
+        stage('Build') { 
+            steps { 
+               echo 'This is a minimal pipeline.' 
             }
         }
     }
+
 
