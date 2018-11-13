@@ -4,9 +4,8 @@ pipeline {
         stage('Example Build') {
             steps {
                 echo 'Hello World Lululemon'
-            }
+          }
         }
-        stage('Example Deploy') {
             when {
                 branch 'production'
             }
