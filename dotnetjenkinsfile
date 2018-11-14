@@ -13,19 +13,19 @@ pipeline {
   }
   stage('Restore PACKAGES') {
    steps {
-    /bat "dotnet restore --configfile NuGet.Config"
+    //bat "dotnet restore --configfile NuGet.Config"
     sh dotnet restore
    }
   }
   stage('Clean') {
    steps {
-    bat 'dotnet clean'
-   /sh dotnet clean
+    //bat 'dotnet clean'
+    sh dotnet clean
    }
   }
   stage('Build') {
    steps {
-    /bat 'dotnet build --configuration Release'
+    //bat 'dotnet build --configuration Release'
     sh dotnet build
    }
   }
@@ -36,7 +36,7 @@ pipeline {
   }
   stage('Publish') {
    steps {
-   / bat "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
+   // bat "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
    }
   }
  }
