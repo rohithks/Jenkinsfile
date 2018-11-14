@@ -13,6 +13,7 @@ pipeline {
   }
   stage('Restore PACKAGES') {
    steps { 
+       sh "pwd"
        sh "dotnet restore" 
    }
   }
