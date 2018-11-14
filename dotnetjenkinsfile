@@ -14,19 +14,19 @@ pipeline {
   stage('Restore PACKAGES') {
    steps {
     //bat "dotnet restore --configfile NuGet.Config"
-    sh dotnet restore
+    dotnet restore
    }
   }
   stage('Clean') {
    steps {
     //bat 'dotnet clean'
-    sh dotnet clean
+    dotnet clean
    }
   }
   stage('Build') {
    steps {
     //bat 'dotnet build --configuration Release'
-    sh dotnet build
+    dotnet build
    }
   }
   stage('Pack') {
