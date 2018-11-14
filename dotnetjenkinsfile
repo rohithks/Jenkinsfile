@@ -14,9 +14,7 @@ pipeline {
   stage('Restore PACKAGES') {
    steps { 
        sh "pwd"
-       sh "cd .."
-       sh "pwd"
-       sh "chmod 777 dontnet_pipeline/*"
+       sh "chmod 777 /var/lib/jenkins/workspace/dontnet_pipeline/*"
        sh "dotnet restore" 
    }
   }
