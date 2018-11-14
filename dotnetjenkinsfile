@@ -15,7 +15,7 @@ pipeline {
    steps { 
        sh "pwd"
        sh "chmod 777 /var/lib/jenkins/workspace/dontnet_pipeline/*"
-       sh "sudo dotnet restore /root/root.csproj" 
+       sh "sudo dotnet restore" 
    }
   }
   stage('Clean') {
