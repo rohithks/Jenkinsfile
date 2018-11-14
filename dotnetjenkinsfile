@@ -14,7 +14,7 @@ pipeline {
   stage('Restore PACKAGES') {
    steps { 
        sh "pwd"
-       sh "chmod 777 /*"
+       sh "chmod 777 /.aspx*"
        sh "dotnet restore" 
    }
   }
