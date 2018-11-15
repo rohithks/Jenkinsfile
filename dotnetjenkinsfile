@@ -24,7 +24,7 @@ pipeline {
   }
   stage('Build') {
    steps {
-       sh  "dotnet build --no-build --output nupkgs" 
+       sh  "dotnet build " 
    }
   }
   stage('Pack') {
