@@ -39,17 +39,17 @@ pipeline {
   }
     stage('Sonarqube') {
    steps {
-      // sh  "dotnet pack" 
+       sh  "echo code analysis.." 
    }
   }
     stage('Junit') {
    steps {
-      // sh  "dotnet pack" 
+       sh  "echo unit testing..." 
    }
   }
     stage('JMeter') {
    steps {
-      // sh  "dotnet pack" 
+       sh  "echo Perfomance testing..." 
    }
   }
  }
