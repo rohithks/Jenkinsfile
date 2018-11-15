@@ -37,5 +37,20 @@ pipeline {
     bat "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
    }
   }
+    stage('Sonarqube') {
+   steps {
+       sh  "dotnet pack" 
+   }
+  }
+    stage('Junit') {
+   steps {
+       sh  "dotnet pack" 
+   }
+  }
+    stage('JMeter') {
+   steps {
+       sh  "dotnet pack" 
+   }
+  }
  }
 }
