@@ -52,5 +52,10 @@ pipeline {
        sh  "echo Perfomance testing..." 
    }
   }
+      stage('Fotify') {
+   steps {
+       sh  "echo code security checking..." 
+   }
+  }
  }
 }
