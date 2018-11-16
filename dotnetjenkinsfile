@@ -32,11 +32,11 @@ pipeline {
        sh  "dotnet pack --no-build --output nupkgs" 
    }
   }
-  stage('Publish') {
-   steps {
-    sh "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
-   }
-  }
+ // stage('Publish') {
+ //  steps {
+ //   sh "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
+ //  }
+ // }
     stage('Sonarqube') {
    steps {
        sh  "echo code analysis.." 
