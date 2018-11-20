@@ -40,10 +40,6 @@ pipeline {
     stage('Sonarqube') {
    steps {
        sh  "echo code analysis.." 
-       withSonarQubeEnv('My SonarQube Server') {
-                    // Optionally use a Maven environment you've configured already
-                    withMaven(dotnet:'dotnet 2.1.300') {
-                     sh 'dotnet clean package sonar:sonar
    }
   }
     stage('Junit') {
