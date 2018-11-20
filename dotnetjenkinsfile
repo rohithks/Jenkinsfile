@@ -27,9 +27,9 @@ pipeline {
        sh  "dotnet build " 
    }
   }
-  stage('Pack') {
+  stage('Sonarqube') {
    steps {
-       sh  "dotnet pack --no-build --output nupkgs" 
+      sh  "echo code analysis.."  
    }
   }
  // stage('Publish') {
@@ -37,9 +37,9 @@ pipeline {
  //   sh "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
  //  }
  // }
-    stage('Sonarqube') {
+    stage('Pack') {
    steps {
-       sh  "echo code analysis.." 
+     sh  "dotnet pack --no-build --output nupkgs"   
    }
   }
     stage('Junit') {
