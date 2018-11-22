@@ -34,6 +34,18 @@ pipeline {
           
     }
 } 
+ stage('Jmeter Test') {
+   steps {
+      sh  "echo testing.."  
+   }
+  }
+    stage('Sonarqube') {
+   steps {
+       sh  "echo Sonarqube Analysis..." 
+       codesonar conditions: [], credentialId: 'd4a26375-5cf5-4af8-96d1-582f96efb1ee', hubAddress: 'http://104.41.141.82:9000', projectName: 'Dotnet_Project', protocol: 'http'
+
+   }
+  }
   stage('Pack') {
    steps {
     sh 'dotnet pack --no-build --output nupkgs'
