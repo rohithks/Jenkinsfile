@@ -12,67 +12,29 @@ pipeline {
    }
   }
   stage('Restore PACKAGES') {
-   steps { 
-       sh "pwd"
-       sh "dotnet restore" 
+   steps {
+    sh "dotnet restore --configfile NuGet.Config"
    }
   }
   stage('Clean') {
    steps {
-       sh "dotnet clean"
+    sh 'dotnet clean'
    }
   }
   stage('Build') {
    steps {
-       sh  "dotnet build " 
+    sh 'dotnet build --configuration Release'
    }
   }
- stage(' Junit Test') {
-        steps {
-          //sh 'npm run test-ci'
-          //junit 'test-results.xml'
-          junit allowEmptyResults: true, testDataPublishers: [[$class: 'AttachmentPublisher']], testResults: '/var/lib/jenkins/workspace/Dotnet_Project/*.xml'
-          
-    }
-} 
-  stage('Jmeter Test') {
+  stage('Pack') {
    steps {
-      sh  "echo testing.."  
+    sh 'dotnet pack --no-build --output nupkgs'
    }
   }
-   stage('Sonarqube') {
+  stage('Publish') {
    steps {
-       sh  "echo Sonarqube Analysis..." 
-       codesonar conditions: [], credentialId: 'd4a26375-5cf5-4af8-96d1-582f96efb1ee', hubAddress: 'http://104.41.141.82:9000', projectName: 'Dotnet_Project', protocol: 'http'
-
-   }
-  }
- // stage('Publish') {
- //  steps {
- //   sh "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
- //  }
- // }
-    stage('Test') {
-   steps {
-     sh  "dotnet pack --no-build --output nupkgs"   
-   }
-  }
-    stage('Test') {
-   steps {
-       sh  "echo unit testing..." 
-   }
-  }
-    stage('Test') {
-   steps {
-       sh  "echo Perfomance testing..." 
-   }
-  }
-      stage('Fotify') {
-   steps {
-       sh  "echo code security checking..." 
+    bat "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
    }
   }
  }
 }
- 
-
