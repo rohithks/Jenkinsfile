@@ -28,15 +28,9 @@ pipeline {
    }
   }
  stage ('Test') {
-      stage('Test') {
         steps {
           sh 'npm run test-ci'
-        }
-      }
-      post { 
-        always { 
-          junit 'test-results.xml'   
-        }
+          junit 'test-results.xml'  
     }
 } 
   stage('Sonarqube') {
