@@ -27,6 +27,29 @@ pipeline {
        sh  "dotnet build " 
    }
   }
+   stages (Test) {
+     steps {
+        sh("npm install -g gulp bower")
+        sh("npm install")
+        sh("bower install")
+        try {
+            sh("gulp test")
+        } catch (err) {
+            if (currentBuild.result == 'UNSTABLE')
+                currentBuild.result = 'FAILURE'
+            throw err
+        } finally {
+            step([$class: 'JUnitResultArchiver', testResults: '**/reports/junit/*.xml', healthScaleFactor: 1.0])
+            publishHTML (target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'coverage',
+                    reportFiles: 'index.html',
+                    reportName: "Junit Report"
+            ])
+        }
+    }
   stage('Sonarqube') {
    steps {
       sh  "echo code analysis.."  
