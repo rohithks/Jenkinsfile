@@ -3,7 +3,6 @@ pipeline {
  environment {
   dotnet = '/usr/bin/dotnet'
  }
-
  stages {
   stage('Checkout') {
    steps {
@@ -28,7 +27,7 @@ pipeline {
        sh  "dotnet build " 
    }
   }
- stage (' Junit Test') {
+ stage(' Junit Test') {
         steps {
           //sh 'npm run test-ci'
           //junit 'test-results.xml'
