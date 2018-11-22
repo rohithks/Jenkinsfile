@@ -27,15 +27,20 @@ pipeline {
        sh  "dotnet build " 
    }
   }
- stage ('Test') {
+ stage (' Junit Test') {
         steps {
           sh 'npm run test-ci'
           junit 'test-results.xml'  
     }
 } 
-  stage('Sonarqube') {
+  stage('Jmeter Test') {
    steps {
-      sh  "echo code analysis.."  
+      sh  "echo testing.."  
+   }
+  }
+   stage('Sonarqube') {
+   steps {
+       sh  "echo Perfomance testing..." 
    }
   }
  // stage('Publish') {
@@ -43,17 +48,17 @@ pipeline {
  //   sh "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
  //  }
  // }
-    stage('Pack') {
+    stage('Test') {
    steps {
      sh  "dotnet pack --no-build --output nupkgs"   
    }
   }
-    stage('Junit') {
+    stage('Test') {
    steps {
        sh  "echo unit testing..." 
    }
   }
-    stage('JMeter') {
+    stage('Test') {
    steps {
        sh  "echo Perfomance testing..." 
    }
