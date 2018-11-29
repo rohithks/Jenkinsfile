@@ -28,7 +28,7 @@ pipeline {
   }
   stage(' Junit Test') {
         steps {
-            sh 'echo testing"
+            sh 'echo testing'
           //sh 'npm run test-ci'
           //junit 'test-results.xml'
           //junit allowEmptyResults: true, testDataPublishers: [[$class: 'AttachmentPublisher']], testResults: '/var/lib/jenkins/workspace/Dotnet_Project/*.xml'
