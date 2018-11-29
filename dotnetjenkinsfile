@@ -30,7 +30,7 @@ pipeline {
         steps {
           //sh 'npm run test-ci'
           //junit 'test-results.xml'
-          junit allowEmptyResults: true, testDataPublishers: [[$class: 'AttachmentPublisher']], testResults: '/var/lib/jenkins/workspace/Dotnet_Project/*.xml'
+          //junit allowEmptyResults: true, testDataPublishers: [[$class: 'AttachmentPublisher']], testResults: '/var/lib/jenkins/workspace/Dotnet_Project/*.xml'
           
     }
 } 
@@ -42,13 +42,14 @@ pipeline {
     stage('Sonarqube') {
    steps {
        sh  "echo Sonarqube Analysis..." 
-       codesonar conditions: [], credentialId: 'd4a26375-5cf5-4af8-96d1-582f96efb1ee', hubAddress: 'http://104.41.141.82:9000', projectName: 'Dotnet_Project', protocol: 'http'
+       //codesonar conditions: [], credentialId: 'd4a26375-5cf5-4af8-96d1-582f96efb1ee', hubAddress: 'http://104.41.141.82:9000', projectName: 'Dotnet_Project', protocol: 'http'
 
    }
   }
   stage('Pack') {
    steps {
-    sh 'dotnet pack --no-build --output nupkgs'
+      sh  "echo testing.."  
+    //sh 'dotnet pack --no-build --output nupkgs'
    }
   }
  // stage('Publish') {
