@@ -1,7 +1,7 @@
 pipeline {
  agent any
  environment {
-  dotnet = '/usr/bin/dotnet'
+  dotnet = 'C:\Program Files\MSBuild\Microsoft\Windows Workflow Foundation\v3.5'
  }
  stages {
   stage('Checkout') {
