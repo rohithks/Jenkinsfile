@@ -13,7 +13,6 @@ pipeline {
   }
   stage('Restore PACKAGES') {
    steps {
-    bat "Set-Location "C:\Program Files (x86)\Jenkins\workspace\DOTNET_PROJECT""
     bat "dotnet restore"
    }
   }
