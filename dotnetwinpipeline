@@ -13,6 +13,7 @@ pipeline {
   }
   stage('Restore PACKAGES') {
    steps {
+    bat "cd C:\Program Files (x86)\Jenkins\workspace\DOTNET_PROJECT"
     bat "dotnet restore --configfile NuGet.Config"
    }
   }
