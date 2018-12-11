@@ -13,17 +13,15 @@ pipeline {
   }
   stage('Restore PACKAGES') {
    steps {
-    bat "dotnet restore"
+   // bat "dotnet restore"
+      bat "\"${env.Nuget_Path}\" restore 1-hello-world"
    }
   }
-   stage('Clean') {
-   steps {
-    bat 'dotnet clean'
-   }
-  }
+ 
   stage('Build') {
    steps {
-    bat 'dotnet build --configuration Release'
+   // bat 'dotnet build --configuration Release'
+      bat "\"${env.Nuget_Path}\" build 1-hello-world"
    }
   }
   stage('Pack') {
