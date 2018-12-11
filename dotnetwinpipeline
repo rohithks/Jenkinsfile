@@ -21,7 +21,7 @@ pipeline {
   stage('Build') {
    steps {
    // bat 'dotnet build --configuration Release'
-      bat "\"${env.Nuget_Path}\" build 1-hello-world"
+       bat ""C:\Users\rohithks\Desktop\msbuild.exe\" 1-hello-world\\1-hello-world.sln /t:Rebuild /p:DeployOnBuild=true /p:PackageAsSingleFile=true /p:platform=\"any cpu\" /p:configuration=\"release\"
    }
   }
   stage('Pack') {
