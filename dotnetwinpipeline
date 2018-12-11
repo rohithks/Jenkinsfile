@@ -13,8 +13,9 @@ pipeline {
   }
   stage('Restore PACKAGES') {
    steps {
+    bat 'echo "restoring Package"'
    // bat "dotnet restore"
-      bat "\"${env.Nuget_Path}\" restore 1-hello-world"
+    //  bat "\"${env.Nuget_Path}\" restore 1-hello-world"
    }
   }
    stage ('Build & SonarAnalysis'){
