@@ -1,7 +1,7 @@
 pipeline {
  agent any
  environment {
-  dotnet = "C:\Users\rohithks\Desktop\vs_community.exe"
+  dotnet = "${tool 'MSBuild15_Path'}"
  }
  stages {
   stage('Checkout') {
@@ -17,16 +17,20 @@ pipeline {
       bat "\"${env.Nuget_Path}\" restore 1-hello-world"
    }
   }
- 
-  stage('Build') {
+   stage ('Build & SonarAnalysis'){
    steps {
-   // bat 'dotnet build --configuration Release'
-       bat "C:\Users\rohithks\Desktop\vs_community.exe\ 1-hello-world\\1-hello-world.sln /t:Rebuild /p:DeployOnBuild=true /p:PackageAsSingleFile=true /p:platform=\"any cpu\" /p:configuration=\"release\"
+   withCredentials([string(credentialsId: 'Sonarqube_Token', variable: 'SonarqubeToken')]) {					
+    bat "\"${tool 'SonarQube_MSBuild'}\\SonarScanner.MSBuild.exe\" begin /k:\"HelloWorld\" /d:sonar.host.url=" + env.SonarQube_URL + " /d:sonar.login=${SonarqubeToken}"
+				
+    bat "\"${tool 'MSBuild15_Path'}\\msbuild.exe\" 1-hello-world\\1-hello-world.sln /t:Rebuild /p:DeployOnBuild=true /p:PackageAsSingleFile=true /p:platform=\"any cpu\" /p:configuration=\"release\""
+				
+    bat "\"${tool 'SonarQube_MSBuild'}\\SonarScanner.MSBuild.exe\" end /d:sonar.login=${SonarqubeToken}"
+    }
    }
   }
   stage('Pack') {
    steps {
-    bat 'dotnet pack --no-build --output nupkgs'
+   bat "\"${env.Nuget_Path}\" pack 1-hello-world"
    }
   }
   stage('Publish') {
