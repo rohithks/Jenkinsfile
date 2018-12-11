@@ -1,7 +1,7 @@
 pipeline {
  agent any
  environment {
-  dotnet = 'C:/Program Files/dotnet/dotnet.exe'
+  dotnet = 'C:\Users\rohithks\Desktop\vs_community.exe'
  }
  stages {
   stage('Checkout') {
@@ -21,7 +21,7 @@ pipeline {
   stage('Build') {
    steps {
    // bat 'dotnet build --configuration Release'
-       bat ""C:\Users\rohithks\Desktop\msbuild.exe\" 1-hello-world\\1-hello-world.sln /t:Rebuild /p:DeployOnBuild=true /p:PackageAsSingleFile=true /p:platform=\"any cpu\" /p:configuration=\"release\"
+       bat "C:\Users\rohithks\Desktop\vs_community.exe\ 1-hello-world\\1-hello-world.sln /t:Rebuild /p:DeployOnBuild=true /p:PackageAsSingleFile=true /p:platform=\"any cpu\" /p:configuration=\"release\"
    }
   }
   stage('Pack') {
