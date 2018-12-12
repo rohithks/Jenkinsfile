@@ -46,7 +46,6 @@ pipeline {
     server.publishBuildInfo buildInfo
    }
   }
- 
   }
  }
-}
+
