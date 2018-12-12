@@ -21,6 +21,8 @@ pipeline {
   
   stage('Artifactory Upload') {
    steps {
+   
+    bat 'echo "restoring Package"'
               script { 
                  def server = Artifactory.server 'Artifactory'
                  def uploadSpec = """{
