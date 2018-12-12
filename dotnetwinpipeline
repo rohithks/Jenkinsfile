@@ -22,13 +22,13 @@ pipeline {
   stage('Artifactory Upload') {
    steps {
    
-    bat 'echo "restoring Package"'
+    bat 'echo "Jfrog Artifactory upload"'
               script { 
                  def server = Artifactory.server 'Artifactory'
                  def uploadSpec = """{
                     "files": [{
                        "pattern": "${env.Nupkg_Path}/ConferenceAddon.1.0.0.0.nupkg ",
-                       "target": "example-repo-local/test-files"
+                       "target": "First"
                     }]
                  }"""
 
