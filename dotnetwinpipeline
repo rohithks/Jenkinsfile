@@ -24,8 +24,10 @@ pipeline {
    
     bat 'echo "Jfrog Artifactory upload"'
               script { 
-                 def server = Artifactory.server 'Artifactory'
-                 def server = Artifactory.newServer url: 'https://maheshcicd.jfrog.io/maheshcicd', credentialsId: '	7b8cb296-1d0c-459d-b5e5-35cb8f5ad12f'
+                 //def server = Artifactory.server 'Artifactory'
+                 //def server = Artifactory.newServer url: 'https://maheshcicd.jfrog.io/maheshcicd', credentialsId: '	7b8cb296-1d0c-459d-b5e5-35cb8f5ad12f'
+                 def server = Artifactory.newServer url: 'https://maheshcicd.jfrog.io/maheshcicd', username: 'admin', password:'mahesh@99'
+
                  def uploadSpec = """{
                     "files": [{
                        "pattern": "${env.Nupkg_Path}/ConferenceAddon.1.0.0.0.nupkg ",
