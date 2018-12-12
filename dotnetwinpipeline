@@ -25,7 +25,7 @@ pipeline {
                  def server = Artifactory.server 'Artifactory'
                  def uploadSpec = """{
                     "files": [{
-                       "pattern": "C:\Program Files\ConferenceAddon.1.0.0.0.nupkg",
+                       "pattern": ""\"${env.Nuget_Path}\" ConferenceAddon.1.0.0.0.nupkg "",
                        "target": "example-repo-local/test-files"
                     }]
                  }"""
