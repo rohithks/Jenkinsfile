@@ -18,7 +18,7 @@ pipeline {
     bat "\"${env.Nuget_Path}\" restore 1-hello-world"
    }
   }
-   stage ('Build & SonarAnalysis'){
+  //* stage ('Build & SonarAnalysis'){
    steps {
    withCredentials([string(credentialsId: 'Sonarqube_Token', variable: 'SonarqubeToken')]) {					
     bat "\"${tool 'SonarQube_MSBuild'}\\SonarScanner.MSBuild.exe\" begin /k:\"HelloWorld\" /d:sonar.host.url=" + env.SonarQube_URL + " /d:sonar.login=${SonarqubeToken}"
@@ -33,11 +33,22 @@ pipeline {
    steps {
    bat "\"${env.Nuget_Path}\" pack 1-hello-world"
    }
-  }
+  } *//
   stage('Publish') {
    steps {
-    bat "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s            http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
-   }
+    //bat "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
+              script { 
+                 def server = Artifactory.server 'art'
+                 def uploadSpec = """{
+                    "files": [{
+                       "pattern": "path/",
+                       "target": "path/"
+                    }]
+                 }"""
+
+                 server.upload(uploadSpec) 
+                     
+ }
   }
  }
 }
