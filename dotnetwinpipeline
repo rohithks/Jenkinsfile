@@ -21,13 +21,12 @@ pipeline {
   
   stage('Artifactory Upload') {
    steps {
-    //bat "dotnet nuget push **\\nupkgs\\*.nupkg -k yourApiKey -s http://myserver/artifactory/api/nuget/nuget-internal-stable/com/sample"
               script { 
                  def server = Artifactory.server 'Artifactory'
                  def uploadSpec = """{
                     "files": [{
-                       "pattern": "path/",
-                       "target": "path/"
+                       "pattern": "\"${env.Nuget_Path}\" /* .nupkg",
+                       "target": "example-repo-local/test-files"
                     }]
                  }"""
 
