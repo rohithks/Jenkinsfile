@@ -30,7 +30,7 @@ pipeline {
 
                  def uploadSpec = """{
                     "files": [{
-                       "pattern": "${env.Nupkg_Path}/nupkg_test/ConferenceAddon.1.0.0.0.nupkg ",
+                       "pattern": "${env.Nupkg_Path}/ConferenceAddon.1.0.0.0.nupkg ",
                        "target": "First"
                     }]
                  }"""
