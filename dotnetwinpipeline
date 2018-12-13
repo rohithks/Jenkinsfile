@@ -8,7 +8,6 @@ pipeline {
    steps {
     //git credentialsId: 'userId', url: 'https://github.com/NeelBhatt/SampleCliApp', branch: 'master'
     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '21dcef66-4390-4b26-8345-bdce1adc6a5d', url: 'https://github.com/rohithks/dotnet-project.git']]])
-
    }
   }
   stage('Restore PACKAGES') {
@@ -17,6 +16,7 @@ pipeline {
     bat "\"${env.Nuget_Path}\" restore 1-hello-world"
    }
   }    
+  
   stage ('Build & SonarAnalysis'){
    steps {
    withCredentials([string(credentialsId: 'Sonarqube_Token', variable: 'SonarqubeToken')]) {					
@@ -26,7 +26,7 @@ pipeline {
 				
     bat "\"${tool 'SonarQube_MSBuild'}\\SonarScanner.MSBuild.exe\" end /d:sonar.login=${SonarqubeToken}"
       }
-   }
+    }
    }
    
   stage('Pack') {
@@ -34,6 +34,7 @@ pipeline {
    bat "\"${env.Nuget_Path}\" pack 1-hello-world"
    }
   }
+  
   stage('Artifactory Upload') {
    steps {
    
@@ -53,8 +54,19 @@ pipeline {
                   bat 'echo "Jfrog Artifactory upload2"'
                  server.upload(uploadSpec) 
                   bat 'echo "Jfrog Artifactory upload3"'
+		 }
+		 }
+		 }
+		 
+     stage('Deploy') {
+     agent {node {label 'AnsibleSlave1'}}
+     steps {
+         sh """
+         echo " Deploying To Server Through Ansible"
+         cd /etc/ansible
+	 ansible-playbook -c local -i "localhost," sample_playbook.yaml -vvv
+         """
   }                    
- }
  }
 }
 }
