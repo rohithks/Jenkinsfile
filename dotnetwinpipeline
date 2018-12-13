@@ -1,4 +1,4 @@
-  pipeline {
+pipeline {
  agent {node {label 'master'}}
  environment {
   dotnet = "${tool 'MSBuild15_Path'}"
@@ -7,8 +7,7 @@
  stage('Artifactory Upload') {
    steps {
    
-    bat 'echo "Jfrog Artifactory upload"'
-              script { 
+        script { 
                bat 'echo "Jfrog Artifactory upload1"'
 			   def buildVersion = currentBuild.number
                def server = Artifactory.server 'Artifactory'
@@ -24,7 +23,7 @@
                   def buildInfo = artifactory.upload artifactSpec
                   artifactory.publishBuildInfo buildInfo
                   bat 'echo "Jfrog Artifactory upload3"'
-		 }
-		 }
-		 }
-		 }
+		        }
+		    }
+		}
+    }
