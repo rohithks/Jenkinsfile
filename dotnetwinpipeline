@@ -1,5 +1,5 @@
 pipeline {
- agent any
+ agent {node {label 'master'}}
  environment {
   dotnet = "${tool 'MSBuild15_Path'}"
  }
