@@ -51,7 +51,7 @@ pipeline {
                     }]
                  }"""
                   bat 'echo "Jfrog Artifactory upload2"' 
-		  erver.upload(uploadSpec)
+		  server.upload(uploadSpec) 
                   bat 'echo "Jfrog Artifactory upload3"'
 		 }
 		 }
