@@ -64,7 +64,7 @@ pipeline {
          sh """
          echo " Deploying To Server Through Ansible"
          cd /etc/ansible
-	 ansible-playbook -c local -i "localhost," sample_playbook.yaml -vvv
+	 ansible-playbook -c local -i "localhost," sample_playbook.yml -vvv
          """
   }                    
  }
