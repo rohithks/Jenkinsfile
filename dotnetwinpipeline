@@ -24,3 +24,5 @@ pipeline {
                   bat 'echo "Jfrog Artifactory upload3"'
    }
   }
+}
+}
