@@ -28,6 +28,7 @@ pipeline {
       }
    }
    }
+   
   stage('Pack') {
    steps {
    bat "\"${env.Nuget_Path}\" pack 1-hello-world"
