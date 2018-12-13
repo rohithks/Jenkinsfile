@@ -3,7 +3,6 @@ pipeline {
  environment {
   dotnet = "${tool 'MSBuild15_Path'}"
  }
- 
  stage('Artifactory Upload') {
    steps {
    
@@ -23,7 +22,5 @@ pipeline {
                   def buildInfo = artifactory.upload artifactSpec
                   artifactory.publishBuildInfo buildInfo
                   bat 'echo "Jfrog Artifactory upload3"'
-		        }
-		    }
-		}
-    }
+   }
+  }
