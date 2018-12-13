@@ -1,9 +1,6 @@
 pipeline {
 
     agent { node { label 'master' } }
-
-......
-
     stage('Publish artifacts') {
         steps {
             script {
@@ -25,8 +22,5 @@ pipeline {
             }
         }
     }
-
-........
-
 }
  
