@@ -12,7 +12,7 @@ pipeline {
               files: [
                 [
                   pattern: "${env.Nupkg_Path}/1-hello-world.1.0.0.nupkg "
-                  target: "First/"
+                  target: "First/froggy-files/"
                 ]
             ])
             artifactory.upload spec: artifactSpec
