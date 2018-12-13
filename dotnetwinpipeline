@@ -51,9 +51,7 @@ pipeline {
                     }]
                  }"""
                   bat 'echo "Jfrog Artifactory upload2"' 
-		  artifactory.upload spec: artifactSpec
-                  def buildInfo = artifactory.upload artifactSpec
-                  artifactory.publishBuildInfo buildInfo
+		  erver.upload(uploadSpec)
                   bat 'echo "Jfrog Artifactory upload3"'
 		 }
 		 }
