@@ -20,9 +20,16 @@ pipeline {
   
    stage('test3'){
    steps {
-     bat "echo ${APP_NAME}"
-	 }
-	}
+    bat "echo ${APP_NAME}"
+    
+    if("{$APP_NAME}=='HelloWorld'"){
+    
+    echo'I only execute on the master branch'
+    }else{
+    echo'I execute elsewhere'
+        }
+   }
+	
   stage ('Build & SonarAnalysis'){
    steps {
    withCredentials([string(credentialsId: 'Sonarqube_Token', variable: 'SonarqubeToken')]) {					
