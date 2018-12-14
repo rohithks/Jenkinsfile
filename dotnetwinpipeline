@@ -9,19 +9,15 @@ pipeline {
      checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '21dcef66-4390-4b26-8345-bdce1adc6a5d', url: 'https://github.com/rohithks/dotnet-project.git']]])
    }
   }
-  stages {
-  stage('Loading Propertyfile') {
-   steps {
-     load "helloworldjenkins.properties"
-   }
-  }
-  
-  stage('Restore PACKAGES') {
-   steps {
-    bat 'echo "restoring Package"'
-    bat "\"${env.Nuget_Path}\" restore 1-hello-world"
-   }
-  }    
+ 
+  stage(''Restore PACKAGES'') {
+            if (%app% == 'HelloWorld') {
+                bat echo ' only execute on Helloworld project'
+                bat "\"${env.Nuget_Path}\" restore 1-hello-world"
+            } else {
+                echo 'I execute elsewhere'
+            }                        
+        }     
   
   stage ('Build & SonarAnalysis'){
    steps {
