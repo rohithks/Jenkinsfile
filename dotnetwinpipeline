@@ -17,8 +17,8 @@ pipeline {
      load "helloworldproperty.properies"
   }
   
-stage('Pre Build Setup')
- {
+stage('Pre Build Setup') {
+ steps {
   if("${APP_NAME}" == 'HelloWorld')
 	{
 	 bat 'echo "${APP_NAME}"'
@@ -26,7 +26,7 @@ stage('Pre Build Setup')
 	else 
 		bat 'echo "${APP_NAME}"'
      }   
-	
+}
                 
 			
   stage ('Build & SonarAnalysis'){
