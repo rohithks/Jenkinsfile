@@ -18,7 +18,8 @@ pipeline {
    }
   }
   
-  stage('test3') {
+   stage('test3') {
+   steps {
             if ('{$APP_NAME} == 'HelloWorld') {
                 echo 'I only execute on the master branch'
             } else {
@@ -26,6 +27,7 @@ pipeline {
             }                        
         } 
 	
+	}
 			
   stage ('Build & SonarAnalysis'){
    steps {
