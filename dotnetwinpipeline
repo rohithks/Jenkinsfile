@@ -20,12 +20,13 @@ pipeline {
   
    stage('test3'){
    
-      if("${APP_NAME}=='HelloWorld'"){
+      if( "${APP_NAME}"=='HelloWorld'){
       echo "${APP_NAME}"
       }else{
       echo'I execute elsewhere'
           }
 	  }
+	  
 	    
 
                 
