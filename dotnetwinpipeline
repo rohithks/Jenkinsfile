@@ -10,7 +10,7 @@ pipeline {
    }
   }
  
-  stage(''Restore PACKAGES'') {
+  stage('Restore PACKAGES') {
             if (%app% == 'HelloWorld') {
                 bat echo ' only execute on Helloworld project'
                 bat "\"${env.Nuget_Path}\" restore 1-hello-world"
