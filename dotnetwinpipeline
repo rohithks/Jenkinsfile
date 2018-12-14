@@ -13,7 +13,7 @@ pipeline {
   stage('Load properties')
     stage('Load Propertyfile') {
     steps {
-     load "gdapjenkins.properties"
+     load "helloworldjenkins.properties"
    }
   }
 				
