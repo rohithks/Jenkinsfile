@@ -18,10 +18,10 @@ stage('Pre Build Setup')
 	{
 	 bat 'echo "${APP_NAME}"'
 	}
-	else {
-	bat 'echo "${APP_NAME}"'
-	}   
-	}
+	else 
+		bat 'echo "${APP_NAME}"'
+     }   
+	
                 
 			
   stage ('Build & SonarAnalysis'){
