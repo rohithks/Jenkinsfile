@@ -10,7 +10,7 @@ pipeline {
    }
   }
  
-  stage('Restore PACKAGES') {
+  stage('Restore PACKAGES'){
   steps {
             if (%app% == 'HelloWorld') {
                 bat echo ' only execute on Helloworld project'
