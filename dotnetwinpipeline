@@ -19,13 +19,14 @@ pipeline {
   }
   
    stage('test3'){
-   
+   steps {
       if( "${APP_NAME}"=='HelloWorld'){
       echo "${APP_NAME}"
       }else{
       echo 'I execute elsewhere'
           }
-	 }			
+	 }
+	}
   stage ('Build & SonarAnalysis'){
    steps {
    withCredentials([string(credentialsId: 'Sonarqube_Token', variable: 'SonarqubeToken')]) {					
