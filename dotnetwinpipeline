@@ -11,26 +11,24 @@ pipeline {
    }
   }
   
-  stage('Load properties')
+  
     stage('Load Propertyfile') {
     steps {
      load "helloworldjenkins.properties"
    }
   }
-				
-			
-  stage('Restore PACKAGES'){
+  
+  stage('Restore Packages'){
   steps {
-            if( "${APP_NAME}"== 'HelloWorld' && releaseVersion == '') {
-           
-                bat echo ' only execute on Helloworld project'
+     if( "{$APP_NAME}"== 'HelloWorld' && releaseVersion == ''){
+        bat echo ' only execute on Helloworld project'
                 bat "\"${env.Nuget_Path}\" restore 1-hello-world"
             } else {
                 echo 'I execute elsewhere'
             }                        
         } 
-	}
-  
+	}				
+			
   stage ('Build & SonarAnalysis'){
    steps {
    withCredentials([string(credentialsId: 'Sonarqube_Token', variable: 'SonarqubeToken')]) {					
