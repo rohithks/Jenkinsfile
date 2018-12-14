@@ -14,7 +14,7 @@ pipeline {
 
 stage('Pre Build Setup')
  {
-  if(${APP_NAME}" == 'HelloWorld')
+  if("${APP_NAME}" == 'HelloWorld')
 	{
 	 bat 'echo "${APP_NAME}"'
 	}
