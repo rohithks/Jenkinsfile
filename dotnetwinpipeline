@@ -18,15 +18,14 @@ pipeline {
    }
   }
   
-  stage('Restore Packages'){
-  steps {
-     if( "{$APP_NAME}"== 'HelloWorld' && releaseVersion == ''){
-            bat "\"${env.Nuget_Path}\" restore 1-hello-world"
-            }else {
-            bat 'echo "only execute on elsewhere"'  
-      }
-      }
-      }
+  stage('test3') {
+            if ('{$APP_NAME} == 'HelloWorld') {
+                echo 'I only execute on the master branch'
+            } else {
+                echo 'I execute elsewhere'
+            }                        
+        } 
+	
 			
   stage ('Build & SonarAnalysis'){
    steps {
