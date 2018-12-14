@@ -12,22 +12,23 @@ pipeline {
   }
   
   stage('Load properties') {
-  steps {
-   
-     load "helloworldjenkins.properties"
-  }
+   steps {
+    load "helloworldjenkins.properties"
+   }
   }
   
-   stage('test3'){
-   steps {
+   stage('Restore Package'){
+    steps {
     bat "echo ${APP_NAME}"
     
     if("{$APP_NAME}=='HelloWorld'"){
-    
-    echo'I only execute on the master branch'
-    }else{
-    echo'I execute elsewhere'
-        }
+     bat echo ' only execute on Helloworld project'
+     bat "\"${env.Nuget_Path}\" restore 1-hello-world"
+     echo "echo ${APP_NAME}"
+     } else {
+     echo "echo No Package named 1-hello-world"
+        
+	}
    }
 	
   stage ('Build & SonarAnalysis'){
