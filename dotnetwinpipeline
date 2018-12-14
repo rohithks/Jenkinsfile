@@ -11,7 +11,12 @@ pipeline {
    }
   }
   
-
+  
+  stage('Load properties')
+   {
+     load "helloworldproperty.properies"
+  }
+  
 stage('Pre Build Setup')
  {
   if("${APP_NAME}" == 'HelloWorld')
