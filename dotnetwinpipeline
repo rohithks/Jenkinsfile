@@ -11,13 +11,16 @@ pipeline {
    }
   }
   
-   stage('test3'){
-   steps {
-if("{$APP_NAME}=='HelloWorld'"){
-echo'I only execute on the master branch'
-}else{
-echo'I execute elsewhere'
-   }}}                      
+
+stage('Pre Build Setup')
+ {
+  if(${APP_NAME}" == 'HelloWorld')
+	{
+	 bat 'echo "${APP_NAME}"'
+	}
+	else {
+	bat 'echo "${APP_NAME}"'
+	}                    
                 
 			
   stage ('Build & SonarAnalysis'){
