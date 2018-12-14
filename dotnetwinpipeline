@@ -6,10 +6,16 @@ pipeline {
  stages {
   stage('Checkout') {
    steps {
-    //git credentialsId: 'userId', url: 'https://github.com/NeelBhatt/SampleCliApp', branch: 'master'
-    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '21dcef66-4390-4b26-8345-bdce1adc6a5d', url: 'https://github.com/rohithks/dotnet-project.git']]])
+     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '21dcef66-4390-4b26-8345-bdce1adc6a5d', url: 'https://github.com/rohithks/dotnet-project.git']]])
    }
   }
+  stages {
+  stage('Loading Propertyfile') {
+   steps {
+     load "helloworldjenkins.properties"
+   }
+  }
+  
   stage('Restore PACKAGES') {
    steps {
     bat 'echo "restoring Package"'
@@ -56,6 +62,18 @@ pipeline {
 		 }
 		 }
 		 }
+		     
+		     
+	stage('Environment Provisioning') {
+        agent {node {label 'AnsibleSlave1'}}
+        steps {
+         sh """
+         echo " Provisioning the environment with Terraform Script"
+        
+         """
+  }                    
+ } 
+		 
 		 
      stage('Deploy') {
      agent {node {label 'AnsibleSlave1'}}
