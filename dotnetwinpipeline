@@ -21,13 +21,13 @@ pipeline {
   stage('Restore Packages'){
   steps {
      if( "{$APP_NAME}"== 'HelloWorld' && releaseVersion == ''){
-        bat echo ' only execute on Helloworld project'
-                bat "\"${env.Nuget_Path}\" restore 1-hello-world"
-            } else {
-                echo 'I execute elsewhere'
-            }                        
-        } 
-	}				
+        bat echo 'only execute on HelloWorld project
+	bat "\"${env.Nuget_Path}\" restore 1-hello-world"
+            }else {
+            bat echo 'only execute on elsewhere"  
+      }
+      }
+      }
 			
   stage ('Build & SonarAnalysis'){
    steps {
