@@ -24,9 +24,9 @@ if("{$APP_NAME}=='HelloWorld'"){
 echo'I only execute on the master branch'
 }else{
 echo'I execute elsewhere'
-                }                        
-                } 
-                }
+                } } }                      
+                
+                
 			
   stage ('Build & SonarAnalysis'){
    steps {
