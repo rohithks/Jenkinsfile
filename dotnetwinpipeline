@@ -21,7 +21,7 @@ pipeline {
   stage('Restore Packages'){
   steps {
      if( "{$APP_NAME}"== 'HelloWorld' && releaseVersion == ''){
-        bat 'echo "execute project helloworld"'
+      
 	bat "\"${env.Nuget_Path}\" restore 1-hello-world"
             }else {
             bat 'echo "only execute on elsewhere"'  
